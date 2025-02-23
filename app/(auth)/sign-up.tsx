@@ -6,6 +6,7 @@ import { images } from '@/constants'
 import FormField from '@/components/FormField'
 import CustomButton from '@/components/CustomButton'
 import { Link, router } from 'expo-router'
+import { useGlobalContext } from '@/context/GlobalProvider'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -14,25 +15,30 @@ const SignUp = () => {
     password: '',
   })
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const {setIsLogged, setUser} = useGlobalContext();
 
   const handleSubmit = async () => {
-    if(formData.email === '' || formData.username === '' || formData.password === '') {
-      Alert.alert('All fields are required')
+    if (formData.email === '' || formData.username === '' || formData.password === '') {
+      Alert.alert('All fields are required');
+      return; // Prevents further execution
     }
 
-    setLoading(true)
+    setLoading(true);
 
     try {
-      const result = await createUser(formData.email, formData.password, formData.username)
-
-      router.replace('/home')
+      const result = await createUser(formData.email, formData.password, formData.username);
+      console.log('Should redirect', result);
+      setUser(result);
+      setIsLogged(true);
+      console.log('Should redirect', result);
+      router.replace('/home');  // Ensure it's correctly used
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };  
 
   return (
     <SafeAreaView style={styles.container}>

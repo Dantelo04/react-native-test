@@ -57,7 +57,6 @@ const TabsLayout = () => {
         elevation: 0,
         paddingTop: 18,
       },
-      headerShown: false,
     }}>
       <Tabs.Screen
         name='home'

@@ -1,14 +1,21 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Link, router } from 'expo-router'
+import { Link, Redirect, router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Image } from 'react-native'
 
 import { images } from '@/constants'
 import CustomButton from '@/components/CustomButton'
 import { StatusBar } from 'expo-status-bar'
+import { useGlobalContext } from '@/context/GlobalProvider'
 
-const RootLayout = () => {
+const App = () => {
+  const {loading, isLogged} = useGlobalContext();
+
+  if(!loading && isLogged) return <Redirect href="/home"/>
+
+  if(loading) return <Text>Loading...</Text>
+  
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{height: '100%'}}>
@@ -70,7 +77,7 @@ const RootLayout = () => {
   )
 }
 
-export default RootLayout
+export default App
 
 const styles = StyleSheet.create({
   container: {

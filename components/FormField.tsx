@@ -28,6 +28,7 @@ const FormField = ({title, placeholder, value, handleChangeText, otherStyles}:Fo
             value={value}
             onFocus={()=> setFocus(true)}
             onBlur={()=> setFocus(false)}
+            autoCapitalize='none'
             onChangeText={handleChangeText} 
             secureTextEntry={title === 'Password'}
             placeholder={placeholder ? placeholder : 'Placeholder'}

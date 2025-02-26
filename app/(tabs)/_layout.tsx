@@ -49,7 +49,7 @@ const TabsLayout = () => {
     <Tabs screenOptions={{
       tabBarShowLabel: false,
       tabBarStyle: {
-        backgroundColor: 'white',
+        backgroundColor: '#1f1f1f',
         borderTopColor: 'transparent',
         shadowColor: 'transparent',
         shadowOpacity: 0,
@@ -57,6 +57,7 @@ const TabsLayout = () => {
         elevation: 0,
         paddingTop: 18,
       },
+      tabBarActiveTintColor: '#f90',
     }}>
       <Tabs.Screen
         name='home'

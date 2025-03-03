@@ -12,24 +12,19 @@ interface TrendingProps {
 }
 
 const Trending = ({posts}: TrendingProps) => {
-    const [refreshing, setRefreshing] = useState(false)
-
-    const onRefresh = () => {
-        setRefreshing(true)
-        // Refresh logic
-        setRefreshing(false)
-    }
 
     return (
         <FlatList
             data={posts}
             keyExtractor={(item) => item.id.toString()}
+            style={{paddingVertical: 16, overflowY: 'hidden'}}
             renderItem={({item})=>(
                 <View style={{
                     padding: 12,
                     backgroundColor: '#141414',
+                    minHeight: 250,
                     borderRadius: 8,
-                    marginRight: item.id > posts.length - 1 ? 0 : 4,
+                    marginRight: item.id > posts.length - 1 ? 0 : 16,
                 }}>
                     <Text style={{color: 'white'}}>{item.title}</Text>
                 </View>
@@ -38,7 +33,6 @@ const Trending = ({posts}: TrendingProps) => {
             ListEmptyComponent={() => (
                 <EmptyState title='Be the first to upload a video!' subtitle='No videos found'/>
             )}
-            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
         />
     )
 }

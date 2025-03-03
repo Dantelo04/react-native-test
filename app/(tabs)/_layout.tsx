@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import { Image } from 'react-native'
 import { icons } from '../../constants'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 interface TabIconProps {
   icon: ImageSourcePropType | undefined
@@ -45,15 +46,16 @@ const TabIcon = ({icon, color, name, focused}: TabIconProps) => {
 
 const TabsLayout = () => {
   return (
-    <>
+    <SafeAreaView style={{height: '100%', backgroundColor: '#1f1f1f'}}>
     <Tabs screenOptions={{
       tabBarShowLabel: false,
       tabBarStyle: {
         backgroundColor: '#1f1f1f',
         borderTopColor: 'transparent',
         shadowColor: 'transparent',
+        borderTopWidth: 0,
         shadowOpacity: 0,
-        height: 94,
+        height: 64,
         elevation: 0,
         paddingTop: 18,
       },
@@ -120,7 +122,7 @@ const TabsLayout = () => {
         }}
       />
     </Tabs>
-    </>
+    </SafeAreaView>
   )
 }
 

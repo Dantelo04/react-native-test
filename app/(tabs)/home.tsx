@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
   },
   welcomeView: {
     gap: 8,
-    marginTop: 24,
     borderColor: '#f90',
     borderWidth: 2,
     backgroundColor: '#1f1f1f',
